@@ -1,0 +1,44 @@
+<!--
+  This page is only for Parent users.
+  It sends an emergency alert to the backend.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Button - Elder Health Monitoring</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="emergency">
+    <div class="app-shell">
+        <header class="top-bar">
+            <div>
+                <h1>Emergency Button</h1>
+                <p class="subtitle">Parent can send an emergency alert from this page.</p>
+            </div>
+            <button id="logoutButton" class="secondary-btn">Logout</button>
+        </header>
+
+        <nav class="nav-links">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="patient_data.html">Patient Data</a>
+            <a href="alerts.html">Alerts</a>
+            <a href="emergency_button.html">Emergency Button</a>
+        </nav>
+
+        <section class="card">
+            <form id="emergencyForm" class="form-grid">
+                <select id="emergencyPatientId" required></select>
+                <textarea id="emergencyMessage" placeholder="Enter emergency message" required></textarea>
+                <button type="submit" class="danger-btn">Send Emergency Alert</button>
+            </form>
+
+            <p id="emergencyStatus" class="message-box"></p>
+        </section>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

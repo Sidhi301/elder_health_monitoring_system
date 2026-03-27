@@ -1,0 +1,49 @@
+{
+  "users": [
+    {
+      "name": "Anita Care",
+      "email": "care@example.com",
+      "password_note": "Register this user first. The system will create code CM001.",
+      "role": "care_manager"
+    },
+    {
+      "name": "Ravi Parent",
+      "email": "parent@example.com",
+      "password_note": "Register this user first. The system will create code P001.",
+      "role": "parent"
+    },
+    {
+      "name": "Neha Child",
+      "email": "child@example.com",
+      "password_note": "Register this user first. The system will create code C001.",
+      "role": "child"
+    }
+  ],
+  "patients": [
+    {
+      "name": "Savitri Devi",
+      "age": 72,
+      "parent_user_code": "P001",
+      "child_user_code": "C001",
+      "care_manager_user_code": "CM001",
+      "patient_code": "PT001"
+    }
+  ],
+  "health_records": [
+    {
+      "patient_id": "PT001",
+      "heart_rate": 115,
+      "oxygen_level": 90,
+      "systolic_bp": 150,
+      "diastolic_bp": 95,
+      "notes": "Patient felt tired in the morning."
+    }
+  ],
+  "alerts": [
+    {
+      "patient_id": "PT001",
+      "message": "Critical oxygen level: 90%",
+      "severity": "critical"
+    }
+  ]
+}

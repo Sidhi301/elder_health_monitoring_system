@@ -1,0 +1,80 @@
+<!--
+  This page is the main dashboard after login.
+  It shows role-based actions and a simple patient management form.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Elder Health Monitoring</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="dashboard">
+    <div class="app-shell">
+        <header class="top-bar">
+            <div>
+                <h1>Dashboard</h1>
+                <p id="welcomeText" class="subtitle"></p>
+            </div>
+            <button id="logoutButton" class="secondary-btn">Logout</button>
+        </header>
+
+        <nav class="nav-links">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="patient_data.html">Patient Data</a>
+            <a href="alerts.html">Alerts</a>
+            <a href="add_health.html" id="addHealthLink">Add Health Data</a>
+            <a href="emergency_button.html" id="emergencyLink">Emergency Button</a>
+        </nav>
+
+        <section class="card">
+            <h2>Your Role</h2>
+            <p id="roleInfo"></p>
+        </section>
+
+        <section class="card hidden" id="careManagerActions">
+            <h2>Care Manager Actions</h2>
+            <p class="subtitle">Use these quick actions to manage patients and add health records.</p>
+            <div class="nav-links">
+                <a href="add_health.html">Go To Add Health Data</a>
+                <a href="alerts.html">View Alerts</a>
+                <a href="patient_data.html">View Patient Data</a>
+            </div>
+        </section>
+
+        <section class="card hidden" id="parentActions">
+            <h2>Parent Actions</h2>
+            <p class="subtitle">Use these quick actions to check data and send emergency alerts.</p>
+            <div class="nav-links">
+                <a href="patient_data.html">View Patient Data</a>
+                <a href="alerts.html">View Alerts</a>
+                <a href="emergency_button.html">Go To Emergency Button</a>
+            </div>
+        </section>
+
+        <section class="card" id="careManagerPanel">
+            <h2>Manage Patients</h2>
+            <p class="subtitle">Only Care Managers can add patients from this form.</p>
+
+            <form id="patientForm" class="form-grid">
+                <input type="text" id="patientName" placeholder="Patient name" required>
+                <input type="number" id="patientAge" placeholder="Age" required>
+                <input type="text" id="parentUserCode" placeholder="Parent code like P001" required>
+                <input type="text" id="childUserCode" placeholder="Child code like C001 (optional)">
+                <button type="submit">Add Patient</button>
+            </form>
+
+            <p id="patientFormMessage" class="message-box"></p>
+        </section>
+
+        <section class="card">
+            <h2>Linked Patients</h2>
+            <div id="patientList" class="list-box"></div>
+        </section>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

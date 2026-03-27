@@ -1,0 +1,37 @@
+<!--
+  This page shows alerts created by the system.
+  All roles can view alerts related to their linked patient.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alerts - Elder Health Monitoring</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="alerts">
+    <div class="app-shell">
+        <header class="top-bar">
+            <div>
+                <h1>Alerts</h1>
+                <p class="subtitle">Warning, critical, and emergency alerts appear here.</p>
+            </div>
+            <button id="logoutButton" class="secondary-btn">Logout</button>
+        </header>
+
+        <nav class="nav-links">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="patient_data.html">Patient Data</a>
+            <a href="alerts.html">Alerts</a>
+        </nav>
+
+        <section class="card">
+            <div id="alertList" class="list-box"></div>
+        </section>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

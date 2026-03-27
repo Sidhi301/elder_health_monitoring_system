@@ -1,0 +1,8 @@
+# This file lists the Python packages needed for the backend.
+fastapi==0.116.1
+uvicorn==0.35.0
+pymongo==4.13.2
+python-jose==3.5.0
+bcrypt==4.3.0
+pydantic[email]==2.11.7
+python-dotenv==1.1.1
