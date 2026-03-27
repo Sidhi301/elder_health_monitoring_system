@@ -1,7 +1,4 @@
-"""
-This file handles password hashing and current-user authentication.
-The functions here are shared by multiple route files.
-"""
+
 
 import bcrypt
 from bson import ObjectId
@@ -12,14 +9,11 @@ from backend.database import db
 from backend.utils.jwt_handler import verify_access_token
 
 
-# HTTPBearer reads the "Authorization: Bearer <token>" header.
 security = HTTPBearer()
 
 
 def get_role_prefix(role: str) -> str:
-    """
-    Return the short code prefix for each user role.
-    """
+    
     prefixes = {
         "care_manager": "CM",
         "parent": "P",
@@ -30,9 +24,7 @@ def get_role_prefix(role: str) -> str:
 
 
 def generate_user_code(role: str) -> str:
-    """
-    Create a simple readable user code like P001 or CM001.
-    """
+   
     prefix = get_role_prefix(role)
     number = 1
 
@@ -46,10 +38,7 @@ def generate_user_code(role: str) -> str:
 
 
 def ensure_user_code(user: dict) -> str:
-    """
-    Return the user's code.
-    If an older user does not have a code yet, create one and save it.
-    """
+    
     current_code = user.get("user_code")
     if current_code:
         return current_code

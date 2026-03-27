@@ -1,7 +1,4 @@
-"""
-This is the main FastAPI entry file.
-It creates the app, enables CORS, and includes the route files.
-"""
+
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -18,7 +15,6 @@ app = FastAPI(
 )
 
 
-# CORS lets the frontend call the backend from the browser.
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -30,13 +26,11 @@ app.add_middleware(
 
 @app.get("/")
 def home():
-    """
-    Simple test route to confirm the backend is running.
-    """
+  
     return {"message": "Elder Health Monitoring System backend is running."}
 
 
-# Add route modules to the app.
+
 app.include_router(auth_router)
 app.include_router(health_router)
 app.include_router(alert_router)

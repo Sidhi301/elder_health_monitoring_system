@@ -1,7 +1,4 @@
-"""
-This file contains patient and health record routes.
-Care Managers can add data, while Parents and Children can view data.
-"""
+
 
 from datetime import datetime, timezone
 
@@ -16,9 +13,7 @@ router = APIRouter(prefix="/api", tags=["Health"])
 
 
 def generate_patient_code() -> str:
-    """
-    Create a simple patient code like PT001.
-    """
+    
     number = 1
 
     while True:
@@ -30,16 +25,12 @@ def generate_patient_code() -> str:
 
 
 def get_patient_by_code(patient_code: str) -> dict | None:
-    """
-    Find a patient using the readable patient code.
-    """
+   
     return db.patients.find_one({"patient_code": patient_code})
 
 
 def create_alerts_from_health_data(health_data: HealthRecordCreate) -> list[dict]:
-    """
-    Check the health values and create alert messages when needed.
-    """
+    
     alerts = []
     current_time = datetime.now(timezone.utc)
 
@@ -83,10 +74,7 @@ def create_alerts_from_health_data(health_data: HealthRecordCreate) -> list[dict
 def get_patients(
     current_user: dict = Depends(require_role(["care_manager", "parent", "child"])),
 ):
-    """
-    Return patients based on the logged-in user's role.
-    This helps the frontend show the right linked patients.
-    """
+    
     if current_user["role"] == "care_manager":
         patients = list(db.patients.find({"care_manager_user_code": current_user["user_code"]}))
     elif current_user["role"] == "parent":
@@ -106,9 +94,7 @@ def create_patient(
     patient: PatientCreate,
     current_user: dict = Depends(require_role(["care_manager"])),
 ):
-    """
-    Create a patient record and connect it to related user codes.
-    """
+   
     parent_user = db.users.find_one({"user_code": patient.parent_user_code})
     child_user = None
 
@@ -144,9 +130,7 @@ def add_health_record(
     health_data: HealthRecordCreate,
     current_user: dict = Depends(require_role(["care_manager"])),
 ):
-    """
-    Add a health record and create alerts when needed.
-    """
+   
     patient = get_patient_by_code(health_data.patient_id)
     if not patient:
         raise HTTPException(
@@ -176,9 +160,7 @@ def get_patient_data(
     patient_id: str,
     current_user: dict = Depends(require_role(["care_manager", "parent", "child"])),
 ):
-    """
-    Return patient details and health history if the user is allowed.
-    """
+   
     patient = get_patient_by_code(patient_id)
     if not patient:
         raise HTTPException(
@@ -221,9 +203,7 @@ def send_emergency_alert(
     emergency: EmergencyCreate,
     current_user: dict = Depends(require_role(["parent"])),
 ):
-    """
-    Parent can send an emergency alert for their patient.
-    """
+   
     patient = get_patient_by_code(emergency.patient_id)
     if not patient:
         raise HTTPException(

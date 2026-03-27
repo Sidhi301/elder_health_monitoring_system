@@ -1,7 +1,4 @@
-"""
-This file contains register and login API routes.
-The code is intentionally simple for beginner learning.
-"""
+
 
 from fastapi import APIRouter, HTTPException, status
 
@@ -17,10 +14,7 @@ router = APIRouter(prefix="/auth", tags=["Authentication"])
 
 @router.post("/register")
 def register_user(user: UserRegister):
-    """
-    Register a new user with a hashed password and a simple user code.
-    Care Manager role needs the correct secret code.
-    """
+  
     existing_user = db.users.find_one({"email": user.email})
     if existing_user:
         raise HTTPException(
@@ -50,10 +44,7 @@ def register_user(user: UserRegister):
 
 @router.post("/login")
 def login_user(user: UserLogin):
-    """
-    Verify login details and return a JWT token.
-    Older users without codes are upgraded during login.
-    """
+   
     existing_user = db.users.find_one({"email": user.email})
     if not existing_user:
         raise HTTPException(

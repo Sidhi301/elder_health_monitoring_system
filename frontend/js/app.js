@@ -1,7 +1,4 @@
-/*
-  This file controls page behavior.
-  Each page calls small functions so the logic stays easy to understand.
-*/
+
 
 document.addEventListener("DOMContentLoaded", () => {
     const page = document.body.dataset.page;

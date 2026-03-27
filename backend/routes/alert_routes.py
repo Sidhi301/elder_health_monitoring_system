@@ -1,7 +1,4 @@
-"""
-This file contains alert viewing APIs.
-Different roles can see alerts related to their patient connections.
-"""
+
 
 from fastapi import APIRouter, Depends
 
@@ -14,9 +11,7 @@ router = APIRouter(prefix="/api", tags=["Alerts"])
 
 @router.get("/alerts")
 def get_alerts(current_user: dict = Depends(require_role(["care_manager", "parent", "child"]))):
-    """
-    Return alerts based on the logged-in user's role.
-    """
+   
     user_role = current_user["role"]
 
     if user_role == "care_manager":

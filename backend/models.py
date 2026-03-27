@@ -1,7 +1,4 @@
-"""
-This file contains all Pydantic models used for request validation.
-Keeping models in one file makes the project easier to explain.
-"""
+
 
 from datetime import datetime
 from typing import Optional, Literal
@@ -13,11 +10,7 @@ RoleType = Literal["care_manager", "parent", "child"]
 
 
 class UserRegister(BaseModel):
-    """
-    Data needed to register a new user.
-    Care Manager registration can also include a secret code.
-    """
-
+  
     name: str = Field(..., min_length=2, max_length=100)
     email: EmailStr
     password: str = Field(..., min_length=6, max_length=100)
@@ -26,20 +19,13 @@ class UserRegister(BaseModel):
 
 
 class UserLogin(BaseModel):
-    """
-    Data needed for user login.
-    """
-
+   
     email: EmailStr
     password: str = Field(..., min_length=6, max_length=100)
 
 
 class PatientCreate(BaseModel):
-    """
-    Care Manager can create a patient record with linked user codes.
-    Older field names are also accepted to avoid frontend cache issues.
-    """
-
+  
     model_config = ConfigDict(populate_by_name=True)
 
     name: str = Field(..., min_length=2, max_length=100)
@@ -58,10 +44,7 @@ class PatientCreate(BaseModel):
 
 
 class HealthRecordCreate(BaseModel):
-    """
-    Health data submitted by a Care Manager.
-    """
-
+  
     patient_id: str = Field(..., min_length=2, max_length=20)
     heart_rate: int = Field(..., ge=20, le=250)
     oxygen_level: int = Field(..., ge=50, le=100)
@@ -71,19 +54,13 @@ class HealthRecordCreate(BaseModel):
 
 
 class EmergencyCreate(BaseModel):
-    """
-    Parent can send an emergency message for urgent help.
-    """
-
+ 
     patient_id: str = Field(..., min_length=2, max_length=20)
     message: str = Field(..., min_length=3, max_length=300)
 
 
 class AlertCreate(BaseModel):
-    """
-    Internal model used when the system creates an alert.
-    """
-
+ 
     patient_id: str
     message: str
     severity: Literal["warning", "critical", "emergency"]
