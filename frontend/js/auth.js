@@ -3,7 +3,8 @@
   These helper functions are reused by all pages.
 */
 
-const API_BASE_URL = "http://127.0.0.1:8000";
+const API_BASE_URL = "https://elder-health-monitoring-system-2.onrender.com";
+
 
 function saveSession(token, user) {
     localStorage.setItem("token", token);
